@@ -20,11 +20,16 @@ let lpush = function (key, value) {
 
 
 let call = async function (key, value) {
-    console.log(await lpush(key, value));
-    process.exit();
+    let result = await lpush(key, value);
+    return result;
+    // process.exit(1);
 };
-call('t', 123);
-lpush('t', 123)
-.then(val=>{
-    console.log(val)
-})
+let b = async function (key, value) {
+    return await call(key, value);
+}
+// call('t', 123);
+// lpush('t', 123)
+// .then(val=>{
+//     console.log(val)
+// })
+exports.lpush = b;
